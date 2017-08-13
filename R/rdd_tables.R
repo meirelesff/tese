@@ -8,6 +8,7 @@
 #'
 #'
 #' @import dplyr
+#' @export
 
 rd_internal <- function(modelo, var, vert = T){
 
@@ -70,6 +71,8 @@ rd_internal <- function(modelo, var, vert = T){
 #'
 #' @param modelos Uma lista contendo os modelos
 #' @param vars Um vetor contendo o nome das variaveis
+#'
+#' @export
 
 rd_vertical <- function(modelos, vars){
 
@@ -90,6 +93,8 @@ rd_vertical <- function(modelos, vars){
 #'
 #' @param modelos Uma lista contendo os modelos
 #' @param vars Um vetor contendo o nome das variaveis
+#'
+#' @export
 
 rd_horizontal <- function(modelos, vars){
 

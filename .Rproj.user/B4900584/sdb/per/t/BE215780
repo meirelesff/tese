@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' BW plot\n#'\n#' Funcao para plotar sensibilidade do estimador RD\n#'\n#' @param x scores;\n#' @param y Var dependente;\n#' @param c Cutpoint;\n#' @param p Polinomio (default 1);\n#' @param h_bw Vetor com os valores inicial, final e intervalos do BW;\n#'\n#' @import ggplot2\n#' @import rdrobust\n#' @importFrom stats quantile\n#'\n#' @export\n#'\n#' @return A ggplot object;\n\nplot_bw <- function(y, x, c = 0, p = 1, h_bw = NULL){\n\n  # Input tests\n  if(is.null(h_bw)){\n    qnts <- as.numeric(quantile(abs(x), probs = seq(0, 1, by = 0.1), na.rm = T))\n    h_bw <- c(qnts[2], qnts[8], 50)\n    h <- seq(qnts[2], qnts[8], length.out = 50)\n  }\n\n  # Calculate the estimates\n  coef <- ci_up <- ci_low <- numeric(length(h))\n  bw <- rdrobust::rdrobust(x = x, y = y, c = c, p = p)$bws[1]\n  for (i in 1:length(h)){\n    reg <- rdrobust::rdrobust(x = x, y = y, c = c, p = p, h = h[i])\n    coef[i] <- reg$coef[3]\n    ci_up[i] <- reg$ci[3]\n    ci_low[i] <- reg$ci[6]\n  }\n\n  # Plots\n  out <- data.frame(coef = coef, ci_up = ci_up, ci_low = ci_low, h = h)\n\n  ggplot2::ggplot(out, ggplot2::aes(x = h, y = coef)) + ggplot2::geom_line(size = 0.82) +\n    ggplot2::geom_ribbon(ggplot2::aes(ymin = ci_up, ymax = ci_low), alpha = 0.2) +\n    ggplot2::scale_y_continuous(expand = c(0, 0)) +\n    ggplot2::scale_x_continuous(expand = c(0, 0)) +\n    ggplot2::geom_hline(yintercept = c, linetype = \"dashed\", size = 0.3) +\n    ggplot2::geom_vline(xintercept = bw, linetype = \"dotted\", size = 0.5)\n}\n",
+    "created" : 1502646905052.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "843376839",
+    "id" : "BE215780",
+    "lastKnownWriteTime" : 1502647023,
+    "last_content_update" : 1502647023075,
+    "path" : "~/GitHub/tese/R/plot_bw.R",
+    "project_path" : "R/plot_bw.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

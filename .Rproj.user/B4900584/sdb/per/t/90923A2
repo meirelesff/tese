@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: tese\nType: Package\nTitle: Pacote da minha tese\nVersion: 1.0.0\nAuthors@R: person(\"Fernando\", \"Meireles\", , \"fmeireles@ufmg.br\", c(\"aut\", \"cre\"))\nDescription: Um pacote com funcionalidades usadas na minha tese de doutorado. \nLicense: GPL (>= 2)\nDepends: R (>= 3.1.2)\nImports: dplyr (>= 0.5.0),\n    ggplot2,\n    rdrobust,\n    stats\nEncoding: UTF-8\nLazyData: true\nURL: https://github.com/meirelesff/tese\nBugReports: https://github.com/meirelesff/tese/issues\nRoxygenNote: 6.0.1\n",
+    "created" : 1502647029708.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1703532538",
+    "id" : "90923A2",
+    "lastKnownWriteTime" : 1502647033,
+    "last_content_update" : 1502647033100,
+    "path" : "~/GitHub/tese/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}
