@@ -41,7 +41,7 @@ rd_internal <- function(modelo, var, vert = T){
   }
 
   # Nomes das linhas
-  nomes <- c("Var.", "Efeito", "IC 95\\%", "P-valor", "H", "N")
+  nomes <- c("Var.", "Efeito", "Erro-padrao", "P-valor", "H", "N")
 
   # Estatisticas
   pval <- modelo$pv[3]
@@ -51,12 +51,12 @@ rd_internal <- function(modelo, var, vert = T){
     pval < 0.1 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{*}"),
     pval >= 0.1 ~ paste0(round(modelo$coef[3], 2))
   )
-  ic <- paste0("\\[", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), "\\]")
+  se <-round(coef$se[3], 2)
   h <- round(modelo$bws[1], 2)
   n <- sum(modelo$Nh)
 
   # Cria o df
-  df <- data.frame(var = var, coef = coef, ic = ic, pval = round(pval, 2), h = h, n = n)
+  df <- data.frame(var = var, coef = coef, se = se, pval = round(pval, 2), h = h, n = n)
   names(df) <- nomes
 
   # Exporta
