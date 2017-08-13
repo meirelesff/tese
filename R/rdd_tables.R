@@ -51,7 +51,7 @@ rd_internal <- function(modelo, var, vert = T){
     pval < 0.1 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{*}"),
     pval >= 0.1 ~ paste0(round(modelo$coef[3], 2))
   )
-  se <-round(coef$se[3], 2)
+  se <-round(modelo$se[3], 2)
   h <- round(modelo$bws[1], 2)
   n <- sum(modelo$Nh)
 
