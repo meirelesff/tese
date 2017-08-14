@@ -17,7 +17,7 @@ rd_internal <- function(modelo, var, vert = T){
   if(vert){
 
     # Nomes das linhas
-    nomes <- c("Efeito", "IC", "h est.", "h bias", "N")
+    nomes <- c("Efeito", "IC 95\\%", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{est}", "N")
 
     # Estatisticas
     pval <- modelo$pv[3]
@@ -43,7 +43,7 @@ rd_internal <- function(modelo, var, vert = T){
   }
 
   # Nomes das linhas
-  nomes <- c("Var.", "Efeito", "IC", "h est.", "h bias", "N")
+  nomes <- c("Var.", "Efeito", "IC 95\\%", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{bias}", "N")
 
   # Estatisticas
   pval <- modelo$pv[3]
