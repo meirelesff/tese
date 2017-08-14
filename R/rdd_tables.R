@@ -17,7 +17,7 @@ rd_internal <- function(modelo, var, vert = T){
   if(vert){
 
     # Nomes das linhas
-    nomes <- c("Efeito", " ", "P-valor", "h est.", "h bias", "N")
+    nomes <- c("Efeito", "IC", "h est.", "h bias", "N")
 
     # Estatisticas
     pval <- modelo$pv[3]
@@ -27,13 +27,14 @@ rd_internal <- function(modelo, var, vert = T){
       pval < 0.1 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
       pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
     )
-    se <- paste0("(", round(modelo$se[3], 2), ")")
+    #se <- paste0("(", round(modelo$se[3], 2), ")")
+    ic <- paste0("(", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), ")")
     h_est <- round(modelo$bws[1], 2)
     h_bias <- round(modelo$bws[2], 2)
     n <- sum(modelo$Nh)
 
     # Cria o df
-    df <- data.frame(x = c(coef, se, round(pval, 2), h_est, h_bias, n))
+    df <- data.frame(x = c(coef, ic, h_est, h_bias, n))
     row.names(df) <- nomes
     colnames(df)[1] <- var
 
@@ -42,7 +43,7 @@ rd_internal <- function(modelo, var, vert = T){
   }
 
   # Nomes das linhas
-  nomes <- c("Var.", "Efeito", "Erro-padrao", "P-valor", "h est.", "h bias", "N")
+  nomes <- c("Var.", "Efeito", "IC", "h est.", "h bias", "N")
 
   # Estatisticas
   pval <- modelo$pv[3]
@@ -52,13 +53,14 @@ rd_internal <- function(modelo, var, vert = T){
     pval < 0.1 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
     pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
   )
-  se <-round(modelo$se[3], 2)
+  #se <-round(modelo$se[3], 2)
+  ic <- paste0("(", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), ")")
   h_est <- round(modelo$bws[1], 2)
   h_bias <- round(modelo$bws[2], 2)
   n <- sum(modelo$Nh)
 
   # Cria o df
-  df <- data.frame(var = var, coef = coef, se = se, pval = round(pval, 2), h_est = h_est, h_bias = h_bias, n = n)
+  df <- data.frame(var = var, coef = coef, ic = ic, h_est = h_est, h_bias = h_bias, n = n)
   names(df) <- nomes
 
   # Exporta
