@@ -17,22 +17,23 @@ rd_internal <- function(modelo, var, vert = T){
   if(vert){
 
     # Nomes das linhas
-    nomes <- c("Efeito", " ", "P-valor", "H", "N")
+    nomes <- c("Efeito", " ", "P-valor", "h est.", "h bias", "N")
 
     # Estatisticas
     pval <- modelo$pv[3]
     coef <- dplyr::case_when(
-      pval < 0.01 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{***}"),
-      pval < 0.05 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{**}"),
-      pval < 0.1 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{*}"),
-      pval >= 0.1 ~ paste0(round(modelo$coef[3], 2))
+      pval < 0.01 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{***}"),
+      pval < 0.05 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{**}"),
+      pval < 0.1 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
+      pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
     )
     se <- paste0("(", round(modelo$se[3], 2), ")")
-    h <- round(modelo$bws[1], 2)
+    h_est <- round(modelo$bws[1], 2)
+    h_bias <- round(modelo$bws[2], 2)
     n <- sum(modelo$Nh)
 
     # Cria o df
-    df <- data.frame(x = c(coef, se, round(pval, 2), h, n))
+    df <- data.frame(x = c(coef, se, round(pval, 2), h_est, h_bias, n))
     row.names(df) <- nomes
     colnames(df)[1] <- var
 
@@ -41,22 +42,23 @@ rd_internal <- function(modelo, var, vert = T){
   }
 
   # Nomes das linhas
-  nomes <- c("Var.", "Efeito", "Erro-padrao", "P-valor", "H", "N")
+  nomes <- c("Var.", "Efeito", "Erro-padrao", "P-valor", "h est.", "h bias", "N")
 
   # Estatisticas
   pval <- modelo$pv[3]
   coef <- dplyr::case_when(
-    pval < 0.01 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{***}"),
-    pval < 0.05 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{**}"),
-    pval < 0.1 ~ paste0(round(modelo$coef[3], 2), "\\textsuperscript{*}"),
-    pval >= 0.1 ~ paste0(round(modelo$coef[3], 2))
+    pval < 0.01 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{***}"),
+    pval < 0.05 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{**}"),
+    pval < 0.1 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
+    pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
   )
   se <-round(modelo$se[3], 2)
-  h <- round(modelo$bws[1], 2)
+  h_est <- round(modelo$bws[1], 2)
+  h_bias <- round(modelo$bws[2], 2)
   n <- sum(modelo$Nh)
 
   # Cria o df
-  df <- data.frame(var = var, coef = coef, se = se, pval = round(pval, 2), h = h, n = n)
+  df <- data.frame(var = var, coef = coef, se = se, pval = round(pval, 2), h_est = h_est, h_bias = h_bias, n = n)
   names(df) <- nomes
 
   # Exporta
