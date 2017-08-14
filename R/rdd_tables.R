@@ -17,7 +17,7 @@ rd_internal <- function(modelo, var, vert = T){
   if(vert){
 
     # Nomes das linhas
-    nomes <- c("Efeito", "IC 95\\%", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{est}", "N")
+    nomes <- c("Efeito", "IC 95\\%", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{bias}", "N")
 
     # Estatisticas
     pval <- modelo$pv[3]
@@ -28,7 +28,7 @@ rd_internal <- function(modelo, var, vert = T){
       pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
     )
     #se <- paste0("(", round(modelo$se[3], 2), ")")
-    ic <- paste0("(", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), ")")
+    ic <- paste0("[", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), "]")
     h_est <- round(modelo$bws[1], 2)
     h_bias <- round(modelo$bws[2], 2)
     n <- sum(modelo$Nh)
@@ -54,7 +54,7 @@ rd_internal <- function(modelo, var, vert = T){
     pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
   )
   #se <-round(modelo$se[3], 2)
-  ic <- paste0("(", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), ")")
+  ic <- paste0("[", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), "]")
   h_est <- round(modelo$bws[1], 2)
   h_bias <- round(modelo$bws[2], 2)
   n <- sum(modelo$Nh)
