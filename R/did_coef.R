@@ -14,5 +14,5 @@ did_coef <- function(modelo, grupos, vars = 1){
              se = modelo$cse[vars],
              ci_up = modelo$coefficients[vars] + (1.96 * modelo$cse[vars]),
              ci_low = modelo$coefficients[vars] - (1.96 * modelo$cse[vars]),
-             partido = grupos)
+             grupos = grupos)
 }

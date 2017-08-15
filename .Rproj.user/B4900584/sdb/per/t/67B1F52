@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "#' DiD coef\n#'\n#' Funcao para retornar estimativas did com intervalos de confianca robustos\n#'\n#' @param modelo Um modelo estimado com o pacote lfe\n#' @param grupos Um character com o nome dos coeficientes\n#' @param vars Um vetor numerico com a posicao dos coeficiente\n#'\n#' @export\n\ndid_coef <- function(modelo, grupos, vars = 1){\n\n  data.frame(coef = modelo$coefficients[vars],\n             se = modelo$cse[vars],\n             ci_up = modelo$coefficients[vars] + (1.96 * modelo$cse[vars]),\n             ci_low = modelo$coefficients[vars] - (1.96 * modelo$cse[vars]),\n             partido = grupos)\n}\n",
+    "contents" : "#' DiD coef\n#'\n#' Funcao para retornar estimativas did com intervalos de confianca robustos\n#'\n#' @param modelo Um modelo estimado com o pacote lfe\n#' @param grupos Um character com o nome dos coeficientes\n#' @param vars Um vetor numerico com a posicao dos coeficiente\n#'\n#' @export\n\ndid_coef <- function(modelo, grupos, vars = 1){\n\n  data.frame(coef = modelo$coefficients[vars],\n             se = modelo$cse[vars],\n             ci_up = modelo$coefficients[vars] + (1.96 * modelo$cse[vars]),\n             ci_low = modelo$coefficients[vars] - (1.96 * modelo$cse[vars]),\n             grupos = grupos)\n}\n",
     "created" : 1502814668031.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2396151251",
+    "hash" : "3816280861",
     "id" : "67B1F52",
-    "lastKnownWriteTime" : 1502814761,
-    "last_content_update" : 1502814761660,
+    "lastKnownWriteTime" : 1502815106,
+    "last_content_update" : 1502815106974,
     "path" : "~/GitHub/tese/R/did_coef.R",
     "project_path" : "R/did_coef.R",
     "properties" : {
