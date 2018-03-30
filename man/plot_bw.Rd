@@ -4,7 +4,7 @@
 \alias{plot_bw}
 \title{BW plot}
 \usage{
-plot_bw(y, x, c = 0, p = 1, h_bw = NULL)
+plot_bw(y, x, c = 0, p = 1, h_bw = NULL, cluster = NULL, level = 95)
 }
 \arguments{
 \item{y}{Var dependente;}
@@ -16,6 +16,10 @@ plot_bw(y, x, c = 0, p = 1, h_bw = NULL)
 \item{p}{Polinomio (default 1);}
 
 \item{h_bw}{Vetor com os valores inicial, final e intervalos do BW;}
+
+\item{cluster}{Cluster robust SE;}
+
+\item{level}{CI;}
 }
 \value{
 A ggplot object;

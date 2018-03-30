@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' CL boot mean\n#'\n#' Funcao para calcular CI de medias com cluster bootstrap\n#'\n#' @param times Numero de drawns\n#' @param x variavel de interesse\n#' @param id cluster\n#' @param pval CI\n#'\n#' @export\n\n\ncl_boot_mean <- function(times, x, id, pval){\n\n  # Function to sample groups\n  sample_groups <- function(x, id){\n\n    df <- data.frame(x = x, id = id)\n    grps <- unique(id)\n    tam <- length(grps)\n\n    df2 <- data.frame(id = sample(grps, tam, replace = T))\n    df2 <-  dplyr::left_join(df2, df, by = \"id\")\n    as.numeric(df2$x)\n  }\n\n  # Boot\n  m <- replicate(times, mean(sample_groups(x, id), na.rm = T))\n  data.frame(mean = mean(x, na.rm = T),\n             dw = stats::quantile(m, pval / 2, na.rm = T),\n             up = stats::quantile(m, 1 - (pval / 2), na.rm = T)\n  )\n}\n",
+    "created" : 1522432510789.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1255667594",
+    "id" : "AAC77FFD",
+    "lastKnownWriteTime" : 1522432667,
+    "last_content_update" : 1522432667435,
+    "path" : "~/GitHub/tese/R/cl_boot_mean.R",
+    "project_path" : "R/cl_boot_mean.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
