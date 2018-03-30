@@ -35,8 +35,8 @@ plot_bw <- function(y, x, c = 0, p = 1, h_bw = NULL, cluster = NULL, level = 95)
   for (i in 1:length(h)){
     reg <- rdrobust::rdrobust(x = x, y = y, c = c, p = p, h = h[i], level = level, cluster = cluster)
     coef[i] <- reg$coef[1]
-    ci_up[i] <- reg$ci[1]
-    ci_low[i] <- reg$ci[4]
+    ci_up[i] <- reg$ci[3]
+    ci_low[i] <- reg$ci[6]
   }
   
   # Plots
