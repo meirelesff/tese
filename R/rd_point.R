@@ -17,9 +17,9 @@ point_rd <- function(modelos, vars){
 
   for(i in 1:length(modelos)){
 
-    coef[i] <- modelos[[1]]$coef[3]
-    ci_up[i] <- modelos[[1]]$ci[6]
-    ci_low[i] <- modelos[[1]]$ci[3]
+    coef[i] <- modelos[[i]]$coef[1]
+    ci_up[i] <- modelos[[i]]$ci[6]
+    ci_low[i] <- modelos[[i]]$ci[3]
   }
 
   # Cria um df
