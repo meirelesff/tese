@@ -4,12 +4,14 @@
 \alias{tema_tese}
 \title{Tema da tese}
 \usage{
-tema_tese(tam.fonte = 14, fonte = "sans")
+tema_tese(tam.fonte = 12, fonte = "sans", rel.eixo = 0.8)
 }
 \arguments{
 \item{tam.fonte}{Font size}
 
 \item{fonte}{Font type}
+
+\item{rel.eixo}{Axis text size}
 }
 \description{
 Tema para ggplot2 usado nos graficos da tese
