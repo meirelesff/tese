@@ -17,15 +17,13 @@ rd_internal <- function(modelo, var, vert = T){
   if(vert){
 
     # Nomes das linhas
-    nomes <- c("Efeito", "Erro-padrao", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{bias}", "N")
+    nomes <- c("Efeito", "Erro-padrão", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{bias}", "N")
 
     # Estatisticas
     pval <- modelo$pv[2]
     coef <- dplyr::case_when(
-      pval < 0.01 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{***}"),
-      pval < 0.05 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{**}"),
-      pval < 0.1 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
-      pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
+      pval < 0.05 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
+      pval >= 0.05 ~ paste0(round(modelo$coef[1], 2))
     )
     se <- paste0("(", round(modelo$se[3], 2), ")")
     h_est <- round(modelo$bws[1], 2)
@@ -42,15 +40,13 @@ rd_internal <- function(modelo, var, vert = T){
   }
 
   # Nomes das linhas
-  nomes <- c("Var.", "Efeito", "Erro-padrao", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{bias}", "N")
+  nomes <- c("Var.", "Efeito", "Erro-padrão", "\\textit{h}\\textsubscript{est}", "\\textit{h}\\textsubscript{bias}", "N")
 
   # Estatisticas
   pval <- modelo$pv[3]
   coef <- dplyr::case_when(
-    pval < 0.01 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{***}"),
-    pval < 0.05 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{**}"),
-    pval < 0.1 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
-    pval >= 0.1 ~ paste0(round(modelo$coef[1], 2))
+    pval < 0.05 ~ paste0(round(modelo$coef[1], 2), "\\textsuperscript{*}"),
+    pval >= 0.05 ~ paste0(round(modelo$coef[1], 2))
   )
   se <-round(modelo$se[3], 2)
   ic <- paste0("[", round(modelo$ci[3], 2), ", ", round(modelo$ci[6], 2), "]")
