@@ -7,6 +7,7 @@ Description: Um pacote com funcionalidades usadas na minha tese de doutorado.
 License: GPL (>= 2)
 Depends: R (>= 3.1.2)
 Imports: dplyr (>= 0.5.0),
+    purrr,
     ggplot2,
     rdrobust,
     stats
